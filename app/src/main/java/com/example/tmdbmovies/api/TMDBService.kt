@@ -11,4 +11,10 @@ interface TMDBService {
         @Query("api_key") apiKey: String = "92421e75b62598ff5da9a5a99445c11f",
         @Query("language") language: String = "pt-BR"
     ): MovieResponse
+    @GET("search/movie")
+    suspend fun searchMovies(
+        @Query("api_key") apiKey: String = "92421e75b62598ff5da9a5a99445c11f",
+        @Query("query") query: String,
+        @Query("language") language: String = "pt-BR"
+    ): MovieResponse
 }
