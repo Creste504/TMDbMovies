@@ -1,26 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#030712"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@drawable/bg_badge"
-        app:iconifiedByDefault="false"
-        app:queryHint="Buscar filmes..."
-        app:queryBackground="@android:color/transparent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_movies"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:paddingBottom="16dp" />
+        android:background="#030712"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <include layout="@layout/toolbar_main" />
+
+        <Spinner
+            android:id="@+id/spinner_genres"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_badge"
+            android:paddingStart="16dp"
+            android:spinnerMode="dropdown" />
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_badge"
+            app:iconifiedByDefault="false"
+            app:queryHint="Buscar filmes..."
+            app:queryBackground="@android:color/transparent"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_movies"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="16dp" />
+    </LinearLayout>
+
+    <include layout="@layout/menu_lateral" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

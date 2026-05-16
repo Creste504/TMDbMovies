@@ -1,9 +1,15 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.TMDbMovies" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.TMDbMovies" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#F5C518</item>
+        <item name="colorPrimaryVariant">#C69E00</item>
+        <item name="colorOnPrimary">#030712</item>
 
-    <style name="Theme.TMDbMovies" parent="Base.Theme.TMDbMovies" />
+        <item name="colorSecondary">#1F2937</item>
+        <item name="colorSecondaryVariant">#111827</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+
+        <item name="android:statusBarColor">#030712</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
 </resources>
