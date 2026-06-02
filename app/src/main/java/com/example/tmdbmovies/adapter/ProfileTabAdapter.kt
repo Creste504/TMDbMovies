@@ -8,7 +8,7 @@ import com.example.tmdbmovies.RecentSearchesFragment
 
 class ProfileTabAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
 
-    override fun getItemCount(): Int = 2 // Total de abas
+    override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {

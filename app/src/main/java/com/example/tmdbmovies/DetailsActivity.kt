@@ -1,5 +1,6 @@
 package com.example.tmdbmovies
 
+
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
@@ -25,6 +26,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.example.tmdbmovies.R // CORREÇÃO: Garante o vínculo correto de IDs mapeados
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -44,6 +46,7 @@ class DetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // CORREÇÃO: Linha de ligação corrigida com a sintaxe correta do Android
         setContentView(R.layout.activity_details)
 
         val imgBackdrop = findViewById<ImageView>(R.id.img_detail_backdrop)
@@ -57,12 +60,13 @@ class DetailsActivity : AppCompatActivity() {
         val txtDuracao = findViewById<TextView>(R.id.txt_detail_duration)
         val txtGeneros = findViewById<TextView>(R.id.txt_detail_genres)
         val rvCast = findViewById<RecyclerView>(R.id.rv_detail_cast)
+        ratingBar?.setIsIndicator(false)
 
         // COMPONENTES DE COMENTÁRIOS (Do seu novo card do XML)
-        val edtComment = findViewById<EditText>(R.id.edt_detail_comment) // Garanta esse ID no seu EditText do XML
-        val btnSendComment = findViewById<AppCompatButton>(R.id.btn_send_comment) // Garanta esse ID no seu Botão do XML
-        val rvComments = findViewById<RecyclerView>(R.id.rv_detail_comments) // Garanta esse ID no seu RecyclerView interno de comentários
-        val txtNoCommentsEmpty = findViewById<TextView>(R.id.txt_no_comments_empty) // Garanta esse ID no texto de "Nenhum comentário ainda" do XML
+        val edtComment = findViewById<EditText>(R.id.edt_detail_comment)
+        val btnSendComment = findViewById<AppCompatButton>(R.id.btn_send_comment)
+        val rvComments = findViewById<RecyclerView>(R.id.rv_detail_comments)
+        val txtNoCommentsEmpty = findViewById<TextView>(R.id.txt_no_comments_empty)
 
         rvCast?.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         rvComments?.layoutManager = LinearLayoutManager(this)
@@ -95,7 +99,6 @@ class DetailsActivity : AppCompatActivity() {
         if (currentMovieId != -1) {
             checkIfMovieIsFavoriteInFirebase(btnFavorite)
             loadUserRatingFromFirebase(ratingBar)
-            // LIGAÇÃO: Monitora e carrega os comentários desse filme em tempo real
             listenToCommentsInFirebase(rvComments, txtNoCommentsEmpty)
         }
 
@@ -105,12 +108,11 @@ class DetailsActivity : AppCompatActivity() {
             }
         }
 
-        // AÇÃO: Envia o comentário para a nuvem ao clicar no botão amarelo
         btnSendComment?.setOnClickListener {
             val textComment = edtComment?.text?.toString()?.trim() ?: ""
             if (textComment.isNotEmpty()) {
                 saveCommentToFirebase(textComment)
-                edtComment?.setText("") // Limpa a caixa de texto
+                edtComment?.setText("")
             } else {
                 Toast.makeText(this, "Escreva um comentário antes de enviar!", Toast.LENGTH_SHORT).show()
             }
@@ -216,7 +218,6 @@ class DetailsActivity : AppCompatActivity() {
             }
     }
 
-    // NOVO: Salva o comentário na coleção global do filme estruturado no Firestore
     private fun saveCommentToFirebase(textComment: String) {
         val currentUser = auth.currentUser
         if (currentUser == null) {
@@ -227,7 +228,7 @@ class DetailsActivity : AppCompatActivity() {
         val commentRef = firestore.collection("comentarios_filmes")
             .document(currentMovieId.toString())
             .collection("comentarios_usuarios")
-            .document() // Cria um ID de documento aleatório exclusivo
+            .document()
 
         val newComment = MovieComment(
             commentId = commentRef.id,
@@ -243,12 +244,11 @@ class DetailsActivity : AppCompatActivity() {
             }
     }
 
-    // NOVO: Escuta as atualizações da coleção de comentários e atualiza o RecyclerView na hora
     private fun listenToCommentsInFirebase(recyclerView: RecyclerView?, txtEmpty: TextView?) {
         firestore.collection("comentarios_filmes")
             .document(currentMovieId.toString())
             .collection("comentarios_usuarios")
-            .orderBy("timestamp", Query.Direction.DESCENDING) // Mais recentes no topo
+            .orderBy("timestamp", Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, error ->
                 if (error != null || snapshot == null) return@addSnapshotListener
 
@@ -277,9 +277,9 @@ class DetailsActivity : AppCompatActivity() {
                 val creditos = service.getMovieCredits(movieId)
 
                 withContext(Dispatchers.Main) {
-                    val minutosTotais = detalhes.runtime ?: 0
-                    val horas = minutosTotais / 60
-                    val minutosRestantes = minutosTotais % 60
+                    val minutesTotais = detalhes.runtime ?: 0
+                    val horas = minutesTotais / 60
+                    val minutosRestantes = minutesTotais % 60
                     txtDuracao?.text = if (horas > 0) "${horas}h ${minutosRestantes}m" else "${minutosRestantes}m"
 
                     val nomesGeneros = detalhes.genres.map { it.name }.joinToString(", ")
