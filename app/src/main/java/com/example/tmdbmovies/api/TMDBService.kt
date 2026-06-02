@@ -2,8 +2,8 @@ package com.example.tmdbmovies.api // Garanta que o seu pacote esteja correto aq
 
 import com.example.tmdbmovies.model.MovieResponse
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
-
 // 1. AS CLASSES DE RESPOSTA FICAM AQUI (FORA DA INTERFACE)
 data class GenreResponse(val genres: List<Genre>)
 data class Genre(val id: Int, val name: String)
@@ -39,4 +39,18 @@ interface TMDBService {
         @Query("with_genres") genreId: String,
         @Query("language") language: String = "pt-BR"
     ): MovieResponse
-}
+
+    @GET("movie/{movie_id}")
+    suspend fun getMovieDetails(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String = "92421e75b62598ff5da9a5a99445c11f",
+        @Query("language") language: String = "pt-BR"
+    ): com.example.tmdbmovies.model.MovieDetailsResponse
+
+    // Busca o elenco do filme
+    @GET("movie/{movie_id}/credits")
+    suspend fun getMovieCredits(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String = "92421e75b62598ff5da9a5a99445c11f",
+        @Query("language") language: String = "pt-BR"
+    ): com.example.tmdbmovies.model.MovieCreditsResponse}

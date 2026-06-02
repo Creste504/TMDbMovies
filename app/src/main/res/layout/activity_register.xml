@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#030712"
@@ -13,16 +12,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:clickable="true"
-        android:focusable="true"
         android:gravity="center_vertical"
-        android:minHeight="48dp">
+        android:clickable="true"
+        android:focusable="true">
 
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_back"
-            app:tint="#9CA3AF" />
+            android:tint="#9CA3AF" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -80,6 +78,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/edt_register_name"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="8dp"
@@ -100,6 +99,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/edt_register_email"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="8dp"
@@ -120,6 +120,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/edt_register_password"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="8dp"
@@ -160,12 +161,11 @@
                 android:id="@+id/txt_go_to_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
                 android:text="Entrar"
                 android:textColor="#F5C518"
                 android:textStyle="bold"
-                tools:ignore="TouchTargetSizeCheck" />
+                android:clickable="true"
+                android:focusable="true" />
         </LinearLayout>
 
     </LinearLayout>

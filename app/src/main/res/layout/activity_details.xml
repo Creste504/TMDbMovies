@@ -1,89 +1,260 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#030712">
+    android:background="#030712"
+    android:fillViewport="true">
 
-    <ImageView
-        android:id="@+id/img_detail_backdrop"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:scaleType="centerCrop"
-        android:alpha="0.4"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="80dp">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_poster"
-        android:layout_width="120dp"
-        android:layout_height="180dp"
-        android:layout_marginStart="16dp"
-        app:cardCornerRadius="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/img_detail_backdrop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_detail_backdrop">
-
-        <ImageView
-            android:id="@+id/img_detail_poster_small"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
-    </androidx.cardview.widget.CardView>
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/txt_detail_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:textColor="#FFFFFF"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/card_poster"
-        app:layout_constraintTop_toBottomOf="@+id/img_detail_backdrop" />
+            <ImageView
+                android:id="@+id/img_detail_backdrop"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:scaleType="centerCrop"
+                android:alpha="0.4"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/txt_detail_rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/bg_badge"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="4dp"
-        android:textColor="#F5C518"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/txt_detail_title"
-        app:layout_constraintTop_toBottomOf="@+id/txt_detail_title" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_poster"
+                android:layout_width="110dp"
+                android:layout_height="165dp"
+                android:layout_marginStart="16dp"
+                app:cardCornerRadius="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/img_detail_backdrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_detail_backdrop">
 
-    <TextView
-        android:id="@+id/lbl_sua_avaliacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Sua Avaliação:"
-        android:textColor="#9CA3AF"
-        app:layout_constraintStart_toStartOf="@+id/card_poster"
-        app:layout_constraintTop_toBottomOf="@+id/card_poster" />
+                <ImageView
+                    android:id="@+id/img_detail_poster_small"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+            </androidx.cardview.widget.CardView>
 
-    <RatingBar
-        android:id="@+id/rating_bar_user"
-        style="?android:attr/ratingBarStyleIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="0.5"
-        android:progressTint="#F5C518"
-        app:layout_constraintStart_toStartOf="@+id/lbl_sua_avaliacao"
-        app:layout_constraintTop_toBottomOf="@+id/lbl_sua_avaliacao" />
+            <TextView
+                android:id="@+id/txt_detail_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="296dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:text="Título do Filme"
+                app:layout_constraintEnd_toStartOf="@+id/btn_detail_favorite"
+                app:layout_constraintStart_toEndOf="@+id/card_poster"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txt_detail_overview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:textColor="#9CA3AF"
-        app:layout_constraintTop_toBottomOf="@+id/rating_bar_user" />
+            <ImageView
+                android:id="@+id/btn_detail_favorite"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="296dp"
+                android:layout_marginEnd="16dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@android:drawable/btn_star_big_off"
+                android:contentDescription="Favoritar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
+
+            <TextView
+                android:id="@+id/txt_detail_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_badge"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="4dp"
+                android:textColor="#F5C518"
+                android:textStyle="bold"
+                android:text="⭐ 0.0" />
+
+            <TextView
+                android:id="@+id/txt_detail_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_badge"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="4dp"
+                android:textColor="#FFFFFF"
+                android:text="0 min" />
+
+            <TextView
+                android:id="@+id/txt_detail_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_badge"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="4dp"
+                android:textColor="#FFFFFF"
+                android:text="----" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_detail_genres"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="#9CA3AF"
+            android:textSize="14sp"
+            android:text="Gêneros" />
+
+        <TextView
+            android:id="@+id/lbl_sua_avaliacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Sua Avaliação:"
+            android:textColor="#9CA3AF" />
+
+        <RatingBar
+            android:id="@+id/rating_bar_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="0.5"
+            android:isIndicator="false"
+            android:progressTint="#FFC107"
+            android:secondaryProgressTint="#FFC107"
+            android:progressBackgroundTint="#444444" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="┃ Sinopse"
+            android:textColor="#F5C518"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_detail_overview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textColor="#9CA3AF"
+            android:textSize="15sp"
+            android:lineSpacingMultiplier="1.2"
+            android:text="Carregando sinopse..." />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="┃ Elenco Principal"
+            android:textColor="#F5C518"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_detail_cast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:clipToPadding="false"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="#1e293b"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="💬 Comentários"
+                android:textColor="#F5C518"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:background="#222938" />
+
+            <EditText
+                android:id="@+id/edt_detail_comment"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="#0c111d"
+                android:gravity="top|start"
+                android:hint="O que você achou deste filme?"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#94a3b8"
+                android:textSize="15sp"
+                android:padding="12dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_send_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="#eab308"
+                android:text="Enviar Comentário"
+                android:textColor="#0c111d"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_no_comments_empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:text="Nenhum comentário ainda. Seja o primeiro a comentar!"
+                android:textColor="#94a3b8"
+                android:textSize="14sp"
+                android:textStyle="italic" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_detail_comments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:nestedScrollingEnabled="false" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

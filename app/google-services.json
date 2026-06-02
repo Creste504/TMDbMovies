@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1083433479479",
+    "project_id": "tmdb-movies-bd6b8",
+    "storage_bucket": "tmdb-movies-bd6b8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1083433479479:android:6ec48c899bf4b109ad3eb2",
+        "android_client_info": {
+          "package_name": "com.example.tmdbmovies"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRfLB_nu7o3NvIm8mBNgv8BMVVdYhxjMw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
